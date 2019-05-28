@@ -3,44 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Book list</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
     <script src="scripts/booksapi.js"></script>
 </head>
 <body>
-<h2>Book list</h2>
-<!--<div ng-controller="bookslist">-->
-    <!--<ul>-->
-        <!--<li ng-repeat="item in list">-->
-            <!--{{item.id}}-->
-        <!--</li>-->
-        <!--<li ng-repeat="item in list">-->
-            <!--{{item.ISBN}}-->
-        <!--</li>-->
-    <!--</ul>-->
-<!--</div>-->
-
-<div ng-controller="bookslist">
-    <table border="1">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>ISBN</th>
-            <th>Title</th>
-            <th>Authors</th>
-            <th>Release date</th>
-            <th>Pages</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="item in list">
-                <td>{{item.id}}</td>
-                <td>{{item.ISBN}}</td>
-                <td>{{item.title}}</td>
-                <td>{{item.authors}}</td>
-                <td>{{item.releaseDate}}</td>
-                <td>{{item.pages}}</td>
-            </tr>
-    </table>
-</div>
+<main class="container">
+    <div class="card border-secondary shadow mt-3">
+        <h3 class="card-header">library-api RESTful service</h3>
+        <div class="card-body">
+            <h5 class="card-title">Book list</h5>
+            <div class="table-responsive" ng-controller="bookslist">
+                <table class="table table-sm table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">ISBN</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Authors</th>
+                        <th scope="col">Release date</th>
+                        <th scope="col">Pages</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in list">
+                        <td>{{item.id}}</td>
+                        <td>{{item.ISBN}}</td>
+                        <td>{{item.title}}</td>
+                        <td>{{item.authors}}</td>
+                        <td>{{item.releaseDate}}</td>
+                        <td>{{item.pages}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
