@@ -24,6 +24,9 @@ public class BookRepositoryDaoImpl implements BookRepositoryDao {
 
     @Override
     public void addBook(Book book) {
+         if (getBookByISBN(book.getISBN()) != null){
+             throw new IllegalArgumentException("Book with that ISBN already exists");
+         }
         BookRepository.getBookList().add(book);
     }
 

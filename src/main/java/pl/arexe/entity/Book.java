@@ -1,7 +1,9 @@
 package pl.arexe.entity;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;

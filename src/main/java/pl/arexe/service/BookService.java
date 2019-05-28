@@ -53,8 +53,33 @@ public class BookService {
                 .releaseDate(book.getReleaseDate())
                 .pages(book.getPages())
                 .build();
-        bookDao.addBook(newBook);
+            bookDao.addBook(newBook);
         LOGGER.info("*** New book added: " + newBook);
         return getBooks();
+    }
+
+    @PUT
+    @Path("/books")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateBook(Book book) {
+        if (bookDao.getBookByISBN(book.getISBN()) != null) {
+            bookDao.updateBook(book);
+            LOGGER.info("*** Book updated: " + book);
+            return Response.ok(book).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).entity("Unable to update book: " + book).build();
+    }
+
+    @DELETE
+    @Path("/books/{ISBN}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response deleteBook(@PathParam("ISBN") Long ISBN) {
+        if (bookDao.getBookByISBN(ISBN) != null) {
+            bookDao.deleteBook(ISBN);
+            LOGGER.info("*** Deleted book with ISBN= " + ISBN);
+            return Response.ok("Deleted book with ISBN=" + ISBN).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).entity("Book not found for ISBN=" + ISBN).build();
     }
 }
