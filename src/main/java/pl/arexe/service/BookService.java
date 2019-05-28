@@ -117,7 +117,7 @@ public class BookService {
 
     /**
      * Deletes the book with given ISBN number on path param
-     * Usage: DELETE /library-api/api/books/9782255421405
+     * Usage: DELETE /library-api/api/books/{ISBN}
      * @param ISBN book ID as Long number type (ISBN)
      * @return confirmation of deletion with book ISBN number
      */

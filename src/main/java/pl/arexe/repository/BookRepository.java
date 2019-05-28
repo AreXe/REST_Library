@@ -37,7 +37,7 @@ public class BookRepository {
 
         Book book3 = Book.builder()
                 .ISBN(978_8_5541_9124_1L)
-                .title("Gra o tron. Pieśń Lodu i Ognia. Tom 1")
+                .title("Gra o tron. Piesn Lodu i Ognia. Tom 1")
                 .authors(Collections.singletonList("Martin George R. R."))
                 .releaseDate(2011)
                 .pages(844)

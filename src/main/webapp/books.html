@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="booksapi">
+<head>
+    <meta charset="UTF-8">
+    <title>Book list</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="scripts/booksapi.js"></script>
+</head>
+<body>
+<h2>Book list</h2>
+<!--<div ng-controller="bookslist">-->
+    <!--<ul>-->
+        <!--<li ng-repeat="item in list">-->
+            <!--{{item.id}}-->
+        <!--</li>-->
+        <!--<li ng-repeat="item in list">-->
+            <!--{{item.ISBN}}-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
+
+<div ng-controller="bookslist">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Authors</th>
+            <th>Release date</th>
+            <th>Pages</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in list">
+                <td>{{item.id}}</td>
+                <td>{{item.ISBN}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.authors}}</td>
+                <td>{{item.releaseDate}}</td>
+                <td>{{item.pages}}</td>
+            </tr>
+    </table>
+</div>
+</body>
+</html>
