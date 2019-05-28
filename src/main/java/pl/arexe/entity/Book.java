@@ -20,6 +20,9 @@ public class Book implements Serializable {
 
     private static final AtomicInteger count = new AtomicInteger(0);
 
+    public Book() {
+    }
+
     public Book(int id, Long ISBN, String title, List<String> authors, Integer releaseDate, Integer pages) {
         this.id = count.incrementAndGet();
         this.ISBN = ISBN;

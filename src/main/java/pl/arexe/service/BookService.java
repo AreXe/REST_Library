@@ -1,11 +1,10 @@
 package pl.arexe.service;
 
 import pl.arexe.dao.BookRepositoryDao;
+import pl.arexe.entity.Book;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.logging.Logger;
@@ -28,5 +27,34 @@ public class BookService {
     public Response getBooks() {
         LOGGER.info("*** Returned book list");
         return Response.ok(bookDao.getBookList()).build();
+    }
+
+    @GET
+    @Path("/books/{ISBN}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getBookByISBN(@PathParam("ISBN") Long ISBN){
+        Book bookByISBN = bookDao.getBookByISBN(ISBN);
+        if(bookByISBN != null){
+            LOGGER.info("*** Returned book with ISBN=" + ISBN);
+            return Response.ok(bookByISBN).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).entity("Book not found for ISBN=" + ISBN).build();
+    }
+
+    @POST
+    @Path("/books")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addBook(Book book) {
+        Book newBook = Book.builder()
+                .ISBN(book.getISBN())
+                .title(book.getTitle())
+                .authors(book.getAuthors())
+                .releaseDate(book.getReleaseDate())
+                .pages(book.getPages())
+                .build();
+        bookDao.addBook(newBook);
+        LOGGER.info("*** New book added: " + newBook);
+        return getBooks();
     }
 }
