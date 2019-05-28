@@ -35,6 +35,7 @@ public class BookRepositoryDaoImpl implements BookRepositoryDao {
         Book bookByISBN = getBookByISBN(book.getISBN());
         if (bookByISBN != null) {
             int index = BookRepository.getBookList().indexOf(bookByISBN);
+            book.setId(bookByISBN.getId());
             BookRepository.getBookList().set(index, book);
         }
     }

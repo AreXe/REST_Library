@@ -21,6 +21,11 @@ public class BookService {
     @Inject
     BookRepositoryDao bookDao;
 
+    /**
+     * List of the books
+     * Usage: GET /library-api/api/books
+     * @return book list as JSON
+     */
     @GET
     @Path("/books")
     @Produces(MediaType.APPLICATION_JSON)
@@ -29,6 +34,12 @@ public class BookService {
         return Response.ok(bookDao.getBookList()).build();
     }
 
+    /**
+     * Get book by ISBN
+     * Usage: GET /library-api/api/books/{ISBN}
+     * @param ISBN book ID as Long number type (ISBN)
+     * @return book as JSON
+     */
     @GET
     @Path("/books/{ISBN}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -41,6 +52,22 @@ public class BookService {
         return Response.status(Response.Status.NOT_FOUND).entity("Book not found for ISBN=" + ISBN).build();
     }
 
+    /**
+     * Adds the book to the list
+     * Usage: POST /library-api/api/books
+     * Example JSON for Body:
+     * {
+     *         "ISBN": 9780136597230,
+     *         "authors": [
+     *             "Bruce Eckel"
+     *         ],
+     *         "pages": 1098,
+     *         "releaseDate": 1998,
+     *         "title": "Thinking in Java"
+     * }
+     * @param book object you want you add as JSON
+     * @return book list as JSON
+     */
     @POST
     @Path("/books")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -58,6 +85,23 @@ public class BookService {
         return getBooks();
     }
 
+    /**
+     * Updates the book by the ISBN
+     * Usage: PUT /library-api/api/books
+     * Example JSON for Body:
+     * {
+     *         "ISBN": 9782255421405,
+     *         "authors": [
+     *             "Michalak Hanna",
+     *             "Pyrak Stefan"
+     *         ],
+     *         "pages": 320,
+     *         "releaseDate": 2013,
+     *         "title": "Budynki jedorodzinne. Projektowanie konstrukcyjne, realizacja, użytkowanie."
+     * }
+     * @param book object you want to replace as JSON, checked by the ISBN number
+     * @return updated book as JSON
+     */
     @PUT
     @Path("/books")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -71,6 +115,12 @@ public class BookService {
         return Response.status(Response.Status.NOT_FOUND).entity("Unable to update book: " + book).build();
     }
 
+    /**
+     * Deletes the book with given ISBN number on path param
+     * Usage: DELETE /library-api/api/books/9782255421405
+     * @param ISBN book ID as Long number type (ISBN)
+     * @return confirmation of deletion with book ISBN number
+     */
     @DELETE
     @Path("/books/{ISBN}")
     @Produces(MediaType.TEXT_PLAIN)
