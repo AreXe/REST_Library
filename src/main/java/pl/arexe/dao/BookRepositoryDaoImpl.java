@@ -3,8 +3,10 @@ package pl.arexe.dao;
 import pl.arexe.entity.Book;
 import pl.arexe.repository.BookRepository;
 
+import javax.ejb.Stateless;
 import java.util.List;
 
+@Stateless
 public class BookRepositoryDaoImpl implements BookRepositoryDao {
 
     @Override
